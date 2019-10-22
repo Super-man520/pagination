@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 60%;
+      margin: 150px auto 30px;
+      position: relative;
+    }
+
+    .container ul {
+      list-style: none;
+    }
+
+    .container ul li {
+      color: #e92322;
+      text-align: center;
+    }
+
+    .container .paginator {
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -30px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <ul>
+      <li>01<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第01个a标签</a></li>
+      <li>02<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第02个a标签</a></li>
+      <li>03<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第03个a标签</a></li>
+      <li>04<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第04个a标签</a></li>
+      <li>05<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第05个a标签</a></li>
+      <li>06<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第06个a标签</a></li>
+      <li>07<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第07个a标签</a></li>
+      <li>08<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第08个a标签</a></li>
+      <li>09<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第09个a标签</a></li>
+      <li>10<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第10个a标签</a></li>
+      <li>11<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第11个a标签</a></li>
+      <li>12<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第12个a标签</a></li>
+      <li>13<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第13个a标签</a></li>
+      <li>14<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第14个a标签</a></li>
+      <li>15<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第15个a标签</a></li>
+      <li>16<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第16个a标签</a></li>
+      <li>17<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第17个a标签</a></li>
+      <li>18<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第18个a标签</a></li>
+      <li>19<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第19个a标签</a></li>
+      <li>20<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第20个a标签</a></li>
+      <li>21<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第21个a标签</a></li>
+      <li>22<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第22个a标签</a></li>
+      <li>23<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第23个a标签</a></li>
+      <li>24<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第24个a标签</a></li>
+      <li>25<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第25个a标签</a></li>
+      <li>26<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第26个a标签</a></li>
+      <li>27<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第27个a标签</a></li>
+      <li>28<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第28个a标签</a></li>
+      <li>29<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第29个a标签</a></li>
+      <li>30<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第30个a标签</a></li>
+      <li>31<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第31个a标签</a></li>
+      <li>32<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第32个a标签</a></li>
+      <li>33<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第33个a标签</a></li>
+      <li>34<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第34个a标签</a></li>
+      <li>35<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第35个a标签</a></li>
+      <li>36<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第36个a标签</a></li>
+      <li>37<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第37个a标签</a></li>
+      <li>38<a href="javascript:void(0)">&nbsp;&nbsp;&nbsp;我是第38个a标签</a></li>
+    </ul>
+    <div class="paginator">分页</div>
+  </div>
+  <script>
+    // 分页三个必须 当前页currentPage 每页个数pageSize 总页数totalPage
+    function setPage(currentPage, pageSize) {
+      var lis = document.querySelectorAll('.container li')
+      var num = lis.length
+      // var currentPage = 1
+      var pageSize = 10
+      var totalPage = null
+      // 设置总页数
+      if (num / pageSize > parseInt(num / pageSize)) {
+        totalPage = Math.ceil(num / pageSize)
+      } else {
+        totalPage = parseInt(num / pageSize)
+      }
+      // 设置每页的页首和页尾
+      var startRow = (currentPage - 1) * pageSize + 1
+      var endRow = currentPage * pageSize
+      endRow = endRow < num ? endRow : num
+      // console.log(startRow,endRow);
+
+      // 设置li的显示与隐藏
+      for (i = 0; i < lis.length; i++) {
+        if (i >= startRow - 1 && i <= endRow - 1) {
+          lis[i].style.display = 'block'
+        } else {
+          lis[i].style.display = 'none'
+        }
+      }
+      // 设置分页模板
+      var tempStr = `共${num}条记录&nbsp;&nbsp;分${totalPage}页&nbsp;&nbsp;当前第${currentPage}页 `
+      if (currentPage > 1) {
+        tempStr += `<a href="javascript:void(0)"; onclick="setPage(1,${pageSize})">首页</a> 
+        <a href="javascript:void(0)"; onclick="setPage(${currentPage - 1},${pageSize})"> 上一页</a>`
+      } else {
+        tempStr += `首页 上一页`
+      }
+      if (currentPage < totalPage) {
+        tempStr += `<a href="javascript:void(0)"; onclick="setPage(${currentPage + 1},${pageSize})"> 下一页</a>
+        <a href="javascript:void(0)"; onclick="setPage(${totalPage},${pageSize})">尾页</a>`
+      } else {
+        tempStr += `下一页 尾页`
+      }
+      // 添加到分页标签
+      document.querySelector('.paginator').innerHTML = tempStr
+    }
+    setPage(1, 10)
+  </script>
+</body>
+
+</html>
