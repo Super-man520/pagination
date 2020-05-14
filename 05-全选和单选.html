@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 30%;
+        padding: 10px;
+        background-color: #ccc;
+        margin: 100px auto 0;
+        border-radius: 5px;
+        display: none;
+      }
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        outline: none;
+        margin: 10px;
+        background-color: #0090ff;
+        border-radius: 3px;
+      }
+      .btn:active {
+        background-color: #ff0090;
+      }
+      .show {
+        display: block;
+      }
+      .hide {
+        display: none;
+      }
+      .time {
+        text-align: center;
+        color: #e92322;
+        padding: 20px 0;
+        border-bottom: 1px solid currentColor;
+      }
+    </style>
+  </head>
+  <body onload="tick()">
+    <h2 class="time"></h2>
+    <button class="btn" onclick="handleShow()">按钮</button>
+    <div class="container">
+      全选
+      <input type="checkbox" class="total" onclick="handleClick()" />
+      <hr />
+      <div class="single">
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">1</span>
+          <span>价格:</span>
+          <span class="price">1</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">2</span>
+          <span>价格:</span>
+          <span class="price">2</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">3</span>
+          <span>价格:</span>
+          <span class="price">3</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">4</span>
+          <span>价格:</span>
+          <span class="price">4</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">5</span>
+          <span>价格:</span>
+          <span class="price">5</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">6</span>
+          <span>价格:</span>
+          <span class="price">6</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">7</span>
+          <span>价格:</span>
+          <span class="price">7</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">8</span>
+          <span>价格:</span>
+          <span class="price">8</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">9</span>
+          <span>价格:</span>
+          <span class="price">9</span>
+        </div>
+        <div class="item">
+          <span>单选</span>
+          <input type="checkbox" />
+          <span>数量:</span>
+          <span class="num">10</span>
+          <span>价格:</span>
+          <span class="price">10</span>
+        </div>
+      </div>
+      <hr />
+      <div class="footer">
+        <span>总计:</span>
+        <span class="total_price">0</span>
+      </div>
+    </div>
+    <script>
+      const h2 = document.querySelector('.time');
+      const container = document.querySelector('.container');
+      const total = document.querySelector('.total');
+      const single = document.querySelector('.single');
+      const inps = Array.from(document.querySelectorAll('.single input'));
+      const nums = Array.from(document.querySelectorAll('.num'));
+      const prices = Array.from(document.querySelectorAll('.price'));
+      const totalPrice = document.querySelector('.total_price');
+      function tick() {
+        h2.innerHTML = `当前时间:&emsp;${new Date().toLocaleTimeString()}`;
+      }
+      setInterval(() => {
+        tick();
+      }, 1000);
+
+      handleShow = () => {
+        const property = container.getAttribute('class').split(' ');
+        // container.setAttribute('class', 'show');
+        container.classList.toggle('show');
+        if (!property.includes('show')) {
+          total.checked = false;
+          inps.forEach((v) => (v.checked = false));
+          totalPrice.innerText = 0;
+        }
+      };
+      handleClick = () => {
+        var status = total.checked;
+        var sum = 0;
+        inps.forEach((v) => {
+          v.checked = status;
+        });
+        if (status) {
+          nums.forEach((v, i) => {
+            sum += v.innerText * prices[i].innerText;
+          });
+        }
+        totalPrice.innerText = sum;
+      };
+      single.addEventListener('click', () => {
+        var status = inps.every((v) => v.checked);
+        var sum = 0;
+        var hasChecked = Array.from(
+          document.querySelectorAll('.single input:checked')
+        );
+        if (!status) {
+          total.checked = false;
+        }
+        total.checked = status;
+        hasChecked.forEach((v, i) => {
+          const num = v.parentNode.children[3].innerText;
+          const price = v.parentNode.children[5].innerText;
+          sum += num * price;
+        });
+        totalPrice.innerText = sum;
+      });
+    </script>
+  </body>
+</html>
