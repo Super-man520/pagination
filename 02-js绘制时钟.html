@@ -7,14 +7,14 @@
       * {
         margin: 0;
         padding: 0;
-        overflow: hidden;
+        /* overflow: hidden; */
       }
       html,
       body {
         width: 100%;
         height: 100%;
       }
-      h5 {
+      h2 {
         border-bottom: 1px solid #000;
         text-align: center;
         color: #0090ff;
@@ -23,15 +23,15 @@
       #h,
       #m,
       #s {
-        width: 100px;
-        height: 102px;
+        width: 300px;
+        height: 306px;
       }
       #box {
         background: url('./img/bg.png') no-repeat;
         background-size: cover;
-        margin: 10px auto 0;
+        margin: 50px auto 0;
         position: relative;
-        overflow: hidden;
+        /* overflow: hidden; */
       }
       #h,
       #m,
@@ -40,22 +40,22 @@
       }
       #h::before {
         content: '';
-        width: 1px;
-        height: 10px;
+        width: 3px;
+        height: 30px;
         background-color: red;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: 42%;
+        top: 40%;
       }
       #h::after {
         content: '';
         display: inline-block;
         width: 0;
         height: 0;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-bottom: 3px solid red;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 9px solid red;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -63,22 +63,22 @@
       }
       #m::before {
         content: '';
-        width: 1px;
-        height: 15px;
+        width: 3px;
+        height: 46px;
         background-color: green;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: 37%;
+        top: 35%;
       }
       #m::after {
         content: '';
         display: inline-block;
         width: 0;
         height: 0;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-bottom: 3px solid green;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 9px solid green;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -86,22 +86,22 @@
       }
       #s::before {
         content: '';
-        width: 1px;
-        height: 20px;
+        width: 3px;
+        height: 62px;
         background-color: skyblue;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: 32%;
+        top: 30%;
       }
       #s::after {
         content: '';
         display: inline-block;
         width: 0;
         height: 0;
-        border-left: 3px solid transparent;
-        border-right: 3px solid transparent;
-        border-bottom: 3px solid skyblue;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 9px solid skyblue;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -110,16 +110,24 @@
     </style>
   </head>
   <body>
-    <h5></h5>
+    <h2></h2>
     <div id="box">
       <div id="h"></div>
       <div id="m"></div>
       <div id="s"></div>
-      <!-- <div style="width: 200px; height: 1px; background-color: hotpink;position: absolute;top: 51.8%;"></div> -->
+      <!-- <div
+        style="
+          width: 300px;
+          height: 1px;
+          background-color: hotpink;
+          position: absolute;
+          top: 49.8%;
+        "
+      ></div> -->
     </div>
 
     <script>
-      var h5 = document.querySelector('h5');
+      var h2 = document.querySelector('h2');
       // 1:找到三个元素标签
       var h = document.getElementById('h'); //时
       var m = document.getElementById('m'); //分
@@ -132,14 +140,14 @@
         h.style.transform = 'rotate(' + HH * 30 + 'deg)';
         m.style.transform = 'rotate(' + MM * 6 + 'deg)';
         s.style.transform = 'rotate(' + SS * 6 + 'deg)';
-        h5.innerHTML = `当前时间:&emsp;${new Date().toLocaleString('chinese', {
+        h2.innerHTML = `当前时间:&emsp;${new Date().toLocaleString('chinese', {
           hour12: true,
         })}`;
       }
-      time();
-      setInterval(() => {
         time();
-      }, 1000);
+        setInterval(() => {
+          time();
+        }, 1000);
     </script>
   </body>
 </html>
