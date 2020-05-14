@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      h5 {
+        border-bottom: 1px solid #000;
+        text-align: center;
+        color: #0090ff;
+      }
+      #box,
+      #h,
+      #m,
+      #s {
+        width: 100px;
+        height: 102px;
+      }
+      #box {
+        background: url('./img/bg.png') no-repeat;
+        background-size: cover;
+        margin: 10px auto 0;
+        position: relative;
+        overflow: hidden;
+      }
+      #h,
+      #m,
+      #s {
+        position: absolute;
+      }
+      #h::before {
+        content: '';
+        width: 1px;
+        height: 10px;
+        background-color: red;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 42%;
+      }
+      #h::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-bottom: 3px solid red;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 39%;
+      }
+      #m::before {
+        content: '';
+        width: 1px;
+        height: 15px;
+        background-color: green;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 37%;
+      }
+      #m::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-bottom: 3px solid green;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 34%;
+      }
+      #s::before {
+        content: '';
+        width: 1px;
+        height: 20px;
+        background-color: skyblue;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 32%;
+      }
+      #s::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-bottom: 3px solid skyblue;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 29%;
+      }
+    </style>
+  </head>
+  <body>
+    <h5></h5>
+    <div id="box">
+      <div id="h"></div>
+      <div id="m"></div>
+      <div id="s"></div>
+      <!-- <div style="width: 200px; height: 1px; background-color: hotpink;position: absolute;top: 51.8%;"></div> -->
+    </div>
+
+    <script>
+      var h5 = document.querySelector('h5');
+      // 1:找到三个元素标签
+      var h = document.getElementById('h'); //时
+      var m = document.getElementById('m'); //分
+      var s = document.getElementById('s'); //秒
+      function time() {
+        var date = new Date();
+        var HH = date.getHours() % 12;
+        var MM = date.getMinutes();
+        var SS = date.getSeconds();
+        h.style.transform = 'rotate(' + HH * 30 + 'deg)';
+        m.style.transform = 'rotate(' + MM * 6 + 'deg)';
+        s.style.transform = 'rotate(' + SS * 6 + 'deg)';
+        h5.innerHTML = `当前时间:&emsp;${new Date().toLocaleString('chinese', {
+          hour12: true,
+        })}`;
+      }
+      time();
+      setInterval(() => {
+        time();
+      }, 1000);
+    </script>
+  </body>
+</html>

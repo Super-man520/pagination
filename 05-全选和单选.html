@@ -44,6 +44,7 @@
   </head>
   <body onload="tick()">
     <h2 class="time"></h2>
+    <div class="currenttime"></div>
     <button class="btn" onclick="handleShow()">按钮</button>
     <div class="container">
       全选
@@ -139,6 +140,7 @@
     </div>
     <script>
       const h2 = document.querySelector('.time');
+      const currenttime = document.querySelector('.currenttime');
       const container = document.querySelector('.container');
       const total = document.querySelector('.total');
       const single = document.querySelector('.single');
@@ -146,8 +148,23 @@
       const nums = Array.from(document.querySelectorAll('.num'));
       const prices = Array.from(document.querySelectorAll('.price'));
       const totalPrice = document.querySelector('.total_price');
+
       function tick() {
-        h2.innerHTML = `当前时间:&emsp;${new Date().toLocaleTimeString()}`;
+        var now = new Date(); //当前日期
+        var nowMonth = now.getMonth(); //当前月
+        var nowYear = now.getFullYear(); //当前年
+        //本月的开始时间
+        var monthStartDate = new Date(nowYear, nowMonth, 1);
+        //本月的结束时间
+        var monthEndDate = new Date(nowYear, nowMonth + 1, 0);
+        // var timeStar = Date.parse(monthStartDate) / 1000; //s
+        // var timeEnd = Date.parse(monthEndDate) / 1000; //s
+        // console.log({ monthStartDate, monthEndDate });
+        // console.log({ timeStar, timeEnd });
+        h2.innerHTML = `当前时间:&emsp;${now.toLocaleString('chinese', {
+          hour12: true,
+        })}`;
+        currenttime.innerHTML = `当前月份起止:&emsp;${monthStartDate.toLocaleDateString()}--${monthEndDate.toLocaleDateString()}`;
       }
       setInterval(() => {
         tick();
